@@ -18,10 +18,18 @@ const styles = StyleSheet.create({
       borderWidth: 1,
       borderColor: "#ccc",
       color: 'white',
-      width: '90%',
+      width: '80%',
       marginVertical: 5,
       borderRadius: 5
     },
+    inputChat: {
+        padding: 10,
+        borderWidth: 1,
+        borderColor: "black",
+        width: '80%',
+        marginVertical: 5,
+        borderRadius: 5
+      },
     btnTextGo: {
       fontSize: 20,
       color: "rgba(43, 243, 36, 1)"
