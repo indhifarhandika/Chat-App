@@ -1,14 +1,16 @@
-import React from 'react';
+import React from 'react'
 import {
   View,
   TextInput,
   Alert,
   Text,
   TouchableOpacity,
-  StyleSheet,
   AsyncStorage,
   ImageBackground
 } from 'react-native'
+import firebase from 'firebase'
+import User from '../data/User'
+import styles from '../components/styles'
 
 export default class LoginScreen extends React.Component {
   // State
@@ -23,6 +25,7 @@ export default class LoginScreen extends React.Component {
 
   // Handler Form
   submitForm = async () => {
+      // Validasi Nomor & Nama
     if (this.state.phone.length < 11) {
       Alert.alert('Error', 'Wrong phone number')
     }else if(this.state.name.length < 4) {
@@ -30,6 +33,11 @@ export default class LoginScreen extends React.Component {
     }else{
       // Save user data
       await AsyncStorage.setItem('userPhone', this.state.phone)
+      // Set Phone Number
+      User.phone = this.state.phone
+      // Insert data to firebase DB
+      firebase.database().ref('users/' + User.phone).set({name: this.state.name})
+      // Move Screen
       this.props.navigation.navigate('Home')
     }
   }
@@ -72,31 +80,6 @@ LoginScreen.navigationOptions = {
     header: null
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF'
-  },
-  brandText: {
-    fontSize: 30,
-    marginBottom: 25,
-    color: 'white'
-  },
-  input: {
-    padding: 10,
-    borderWidth: 1,
-    borderColor: "#ccc",
-    color: 'white',
-    width: '90%',
-    marginVertical: 5,
-    borderRadius: 5
-  },
-  btnTextGo: {
-    fontSize: 20,
-    color: "rgba(43, 243, 36, 1)"
-  }
-})
+
 
 
