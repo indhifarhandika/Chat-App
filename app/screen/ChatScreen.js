@@ -1,9 +1,8 @@
 import React from 'react'
-import { SafeAreaView, Text, TextInput, Dimensions, TouchableOpacity, View, FlatList, ImageBackground } from 'react-native'
+import { SafeAreaView, Text, TextInput, Dimensions, TouchableOpacity, View, FlatList, ImageBackground, Platform } from 'react-native'
 import styles from '../components/styles'
 import User from '../data/User'
 import firebase from 'firebase'
-import { isTSEnumMember } from '@babel/types'
 
 export default class ChatScreen extends React.Component {
     constructor(props) {
@@ -54,6 +53,8 @@ export default class ChatScreen extends React.Component {
             }
             updates['messages/' + User.phone + '/' + this.state.person.phone + '/' + msgId] = message
             updates['messages/' + this.state.person.phone + '/' +  User.phone + '/' + msgId] = message
+            console.log(updates)
+            console.log(this.state.messageList)
             firebase.database().ref().update(updates)
             this.setState({ textMessage: '' })
         }
@@ -70,7 +71,7 @@ export default class ChatScreen extends React.Component {
                 marginBottom: 10
             }}>
                 <Text style={{ color: '#fff', padding: 7, fontSize: 16 }}>{item.message}</Text>
-                <Text style={{ color: '#eee', padding: 3, fontSize: 12 }}>{this.convertTime(item.time)}</Text>
+                <Text style={{ color: '#eee', padding: 3, fontSize: 10 }}>{this.convertTime(item.time)}</Text>
             </View>
         )
     }
@@ -85,7 +86,7 @@ export default class ChatScreen extends React.Component {
                     renderItem={this.renderRow}
                     keyExtractor={(item, index) => index.toString()}
                 />
-                <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 15, marginBottom: 30 }} >
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 15, marginBottom: Platform.OS === 'ios' ? 30 : 10 }} >
                     <TextInput
                         style={styles.input}
                         value={this.state.textMessage}

@@ -46,7 +46,7 @@ export default class LoginScreen extends React.Component {
         return (
             <ImageBackground source={require('../../assets/image1.jpg')} style={styles.container}>
                 <View>
-                    <Text style={styles.brandText}>GoChat</Text>
+                    <Text style={styles.brandText}><Text style={{ color: 'rgba(43, 243, 36, 1)' }}>Go</Text>Chat</Text>
                 </View>
                 <TextInput
                     placeholder="Phone Number"

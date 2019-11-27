@@ -1,19 +1,10 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, FlatList, AsyncStorage, ImageBackground, SafeAreaView } from 'react-native'
+import { View, Text, TouchableOpacity, FlatList, AsyncStorage, Button, Image, SafeAreaView } from 'react-native'
 import firebase from 'firebase'
 import User from '../data/User'
 import styles from '../components/styles'
 
 export default class HomeScreen extends React.Component {
-
-    // Logout
-    _logout = async () => {
-        // Remove data from database
-        firebase.database().ref('users/' + User.phone).remove()
-
-        await AsyncStorage.clear()
-        this.props.navigation.navigate('Login')
-    }
 
     state = {
         users: []
@@ -60,6 +51,13 @@ export default class HomeScreen extends React.Component {
     }
 }
 
-HomeScreen.navigationOptions = {
-    title: "GoChat"
+HomeScreen.navigationOptions = ({ navigation }) => {
+    return {
+        title: "GoChat",
+        headerRight: (
+            <TouchableOpacity style={{marginRight: 20}} onPress={() => console.log(navigation.navigate('Profile'))}>
+                <Image source={ require('../../assets/akun.png') } style={{ width: 30, height: 30 }} />
+            </TouchableOpacity>
+        )
+    }
 }

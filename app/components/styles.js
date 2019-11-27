@@ -1,4 +1,3 @@
-import React from 'react'
 import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
@@ -16,7 +15,7 @@ const styles = StyleSheet.create({
     input: {
       padding: 10,
       borderWidth: 1,
-      borderColor: "#ccc",
+      borderColor: "rgba(43, 243, 36, 1)",
       color: 'white',
       width: '80%',
       marginVertical: 5,
@@ -31,7 +30,7 @@ const styles = StyleSheet.create({
         borderRadius: 5
       },
     btnTextGo: {
-      fontSize: 20,
+      fontSize: 23,
       color: "rgba(43, 243, 36, 1)"
     }
 })
