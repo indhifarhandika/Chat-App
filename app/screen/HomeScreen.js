@@ -58,6 +58,7 @@ HomeScreen.navigationOptions = ({ navigation }) => {
             <TouchableOpacity style={{marginRight: 20}} onPress={() => console.log(navigation.navigate('Profile'))}>
                 <Image source={ require('../../assets/akun.png') } style={{ width: 30, height: 30 }} />
             </TouchableOpacity>
-        )
+        ),
+        headerLeft: null
     }
 }

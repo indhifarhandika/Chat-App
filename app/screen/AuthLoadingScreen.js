@@ -1,11 +1,12 @@
 import React from 'react'
-import { ActivityIndicator, AsyncStorage, StatusBar, View } from 'react-native'
+import { ActivityIndicator, AsyncStorage, StatusBar, View, YellowBox } from 'react-native'
 import firebase from 'firebase'
 import User from '../data/User'
 
 class AuthLoadingScreen extends React.Component {
     constructor(props) {
         super(props)
+        YellowBox.ignoreWarnings(['Setting a timer'])
         this._bootstrapAsync()
     }
 
